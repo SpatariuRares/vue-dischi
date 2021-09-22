@@ -33,28 +33,17 @@ export default {
   align-items: center;
   svg{
     width: 10%;
-    -webkit-animation: scale-down-center 0.4s ease-in-out infinite alternate both;
     animation: scale-down-center 0.4s ease-in-out infinite alternate both;
   }
-  @-webkit-keyframes scale-down-center {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+  @keyframes scale-down-center {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+    }
   }
-  100% {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-  }
-}
-@keyframes scale-down-center {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  100% {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-  }
-}
 }
 </style>
