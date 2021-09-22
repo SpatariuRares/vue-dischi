@@ -4,21 +4,26 @@
         v-for="(Disc,index) in discList" :key="index"
         :item="Disc"
       />
+      <Loader
+      :flag="loading"/>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Disc from "./Disc.vue";
+import Loader from "./Loader.vue";
 export default {
   name: 'Discs',
   components: {
     Disc,
+    Loader,
   },
   data(){
     return {
       APIUrl:"https://flynn.boolean.careers/exercises/api/array/music",
       discList:[],
+      loading: true,
     }
   },
   created(){
@@ -29,6 +34,7 @@ export default {
       axios.get(this.APIUrl).then((res)=>{
         console.log(res.data.response);
         this.discList = res.data.response;
+        this.loading=false;
       })
     }
   }
