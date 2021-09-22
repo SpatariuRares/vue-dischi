@@ -1,11 +1,9 @@
 <template>
-  <div id="Discs" class="container d-flex ">
-    <div class="row">
+  <div id="Discs" class="d-flex flex-wrap">
       <Disc
         v-for="(Disc,index) in discList" :key="index"
         :item="Disc"
       />
-    </div>
   </div>
 </template>
 
@@ -36,7 +34,11 @@ export default {
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+#Discs{
+  width: 70%;
+  padding:5%;
+  margin: 0 auto; 
+}
 </style>
