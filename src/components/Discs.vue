@@ -1,7 +1,7 @@
 <template>
-  <div id="Discs" class="d-flex flex-wrap">
+  <div id="Discs">
       <Disc
-        v-for="(Disc,index) in discList" :key="index"
+        v-for="(Disc,index) in filterlist" :key="index"
         :item="Disc"
       />
       <Loader
@@ -10,11 +10,12 @@
 </template>
 
 <script>
-import axios from "axios";
+
 import Disc from "./Disc.vue";
 import Loader from "./Loader.vue";
 export default {
   name: 'Discs',
+  props: ["discList","filtergener","loading"],
   components: {
     Disc,
     Loader,
@@ -22,20 +23,16 @@ export default {
   data(){
     return {
       APIUrl:"https://flynn.boolean.careers/exercises/api/array/music",
-      discList:[],
-      loading: true,
     }
   },
-  created(){
-    this.getdisc();
-  },
-  methods:{
-    getdisc(){
-      axios.get(this.APIUrl).then((res)=>{
-        console.log(res.data.response);
-        this.discList = res.data.response;
-        this.loading=false;
-      })
+  computed:{
+    filterlist(){
+      let filterlist=this.discList.filter((ris)=>{
+        if(this.filtergener=="all") return true
+        else if(ris.genre==this.filtergener)return true;
+        else return false;
+      });
+      return filterlist;
     }
   }
 }
@@ -44,7 +41,8 @@ export default {
 <style scoped lang="scss">
 #Discs{
   width: 70%;
-  padding:5%;
   margin: 0 auto; 
+  display:flex;
+  flex-wrap: wrap;
 }
 </style>
