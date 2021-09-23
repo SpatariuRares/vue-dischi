@@ -14,6 +14,18 @@
           {{ genre }}
         </option>
       </select>
+      <select name="artist" id="artist" 
+      v-model="artistSelected" 
+      @change="getArtist">
+        <option value="all">all</option>
+        <option
+          v-for="(artist, index) in artists"
+          :value="artist"
+          :key="index"
+        >
+          {{ artist }}
+        </option>
+      </select>
     </div>
   </div>
 </template>
@@ -25,11 +37,15 @@ export default {
   data(){
     return {
       genreSelected:"all",
+      artistSelected:"all"
     }
   },
   methods: {
     getGenre() {
       this.$emit("getGenre", this.genreSelected);
+    },
+    getArtist() {
+      this.$emit("getArtist", this.artistSelected);
     },
   },
   computed:{
@@ -41,6 +57,15 @@ export default {
         }
       })
       return genres;
+    },
+    artists(){
+      const artists=[];
+      this.discList.forEach((album)=>{
+        if(!artists.includes(album.author)){
+          artists.push(album.author);
+        }
+      })
+      return artists;
     },
   },
 }

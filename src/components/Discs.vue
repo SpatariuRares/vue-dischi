@@ -15,7 +15,7 @@ import Disc from "./Disc.vue";
 import Loader from "./Loader.vue";
 export default {
   name: 'Discs',
-  props: ["discList","filtergener","loading"],
+  props: ["discList","filtergener","loading","filterartist"],
   components: {
     Disc,
     Loader,
@@ -30,6 +30,12 @@ export default {
       let filterlist=this.discList.filter((ris)=>{
         if(this.filtergener=="all") return true
         else if(ris.genre==this.filtergener)return true;
+        else return false;
+      });
+      filterlist=filterlist.filter((ris)=>{
+        console.log(ris.author)
+        if(this.filterartist=="all") return true
+        else if(ris.author==this.filterartist)return true;
         else return false;
       });
       return filterlist;

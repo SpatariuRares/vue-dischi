@@ -3,12 +3,14 @@
     <Header
       :discList="disclist"
       @getGenre="getGenre"
+      @getArtist="getArtist"
     />
     <main>
       <Discs
       :discList="disclist"
       :loading="loader"
       :filtergener="filtergener"
+      :filterartist="filterartist"
       />
     </main>
   </div>
@@ -31,6 +33,7 @@ export default {
       APIUrl:"https://flynn.boolean.careers/exercises/api/array/music",
       loader: true,
       filtergener:"all",
+      filterartist:"all",
     }
   },
   created(){
@@ -44,9 +47,10 @@ export default {
       })
     },
     getGenre(gener){
-      console.log("ciaos")
       this.filtergener=gener;
-      this.getdisc();
+    },
+    getArtist(artist){
+      this.filterartist=artist;
     }
   }
 }
